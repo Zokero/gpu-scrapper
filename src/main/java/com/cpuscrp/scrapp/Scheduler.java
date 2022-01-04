@@ -3,7 +3,7 @@ package com.cpuscrp.scrapp;
 
 import com.cpuscrp.scrapp.db.GpuRepository;
 import com.cpuscrp.scrapp.model.Gpu;
-import com.cpuscrp.scrapp.scrappers.MoreleScrapper;
+import com.cpuscrp.scrapp.scrapp.MoreleScrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;

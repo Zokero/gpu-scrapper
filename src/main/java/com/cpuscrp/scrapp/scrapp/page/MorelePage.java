@@ -1,4 +1,4 @@
-package com.cpuscrp.scrapp.scrappers;
+package com.cpuscrp.scrapp.scrapp.page;
 
 import com.cpuscrp.scrapp.model.Gpu;
 import com.cpuscrp.scrapp.model.GpuFactory;
@@ -15,46 +15,61 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @RequiredArgsConstructor
-final class Page {
+public class MorelePage implements Page {
 
-    private final Document document;
     private final GpuFactory gpuFactory;
-    private final PriceFormatter priceFormatter;
+    private final Document document;
 
     public List<Gpu> getGpus() {
         List<Gpu> gpuList = new ArrayList<>();
-        Elements pageElements = document.select("div[class=cat-product-inside]");
-        for (Element element : pageElements) {
-            Elements features = element.select("div[class=cat-product-feature]");
-            Elements productLink = element.select("a[class=productLink]");
-            createGpu(element, features, productLink).ifPresent(gpuList::add);
+        Elements productElements = getProductElements();
+        for (Element productElement : productElements) {
+            Elements featuresElement = getFeaturesFromProductElement(productElement);
+            Elements productLinkElement = getProductLinkFromProductElement(productElement);
+            Elements priceElement = getPriceFromProductLinkElement(productElement);
+            createGpu(priceElement, featuresElement, productLinkElement).ifPresent(gpuList::add);
         }
         return gpuList;
     }
 
-    public int getNumberOfPages() {
-        return Integer.parseInt(document.select("div[class=pagination-btn-nolink-anchor]").text());
-    }
-
-    //Move it to GpuFactory
-    private Optional<Gpu> createGpu(Element element, Elements features, Elements productLink) {
-        if (!features.isEmpty()) {
-            String title = productLink.attr("title");
+    private Optional<Gpu> createGpu(Elements priceElement, Elements featuresElement, Elements productLinkElement) {
+        if (!featuresElement.isEmpty()) {
+            String title = productLinkElement.attr("title");
             Optional<String> manufacturerName = getManufacturerFromTitle(title);
-            Optional<Double> price = priceFormatter.getPriceFromString(getRawPrice(element));
+            Optional<Double> price = getFormattedPrice(priceElement);
             if (manufacturerName.isPresent() && price.isPresent()) {
-                String fullGpuName = getFullGpuName(features);
+                String fullGpuName = getFullGpuName(featuresElement);
                 String model = getModelFromFullGpuName(fullGpuName);
                 String chipsetName = getChipsetName(fullGpuName);
-                String gpuLink = productLink.attr("href");
+                String gpuLink = productLinkElement.attr("href");
                 return gpuFactory.createGpu(chipsetName, model, price.get(), manufacturerName.get(), gpuLink);
             }
         }
         return Optional.empty();
     }
 
-    private String getRawPrice(Element element) {
-        return element.select("div[class=price-new]").get(0).text();
+    private Elements getProductLinkFromProductElement(Element element) {
+        return element.select("a[class=productLink]");
+    }
+
+    private Elements getFeaturesFromProductElement(Element element) {
+        return element.select("div[class=cat-product-feature]");
+    }
+
+    private Elements getProductElements() {
+        return document.select("div[class=cat-product-inside]");
+    }
+
+    public int getNumberOfPages() {
+        return Integer.parseInt(document.select("div[class=pagination-btn-nolink-anchor]").text());
+    }
+
+    private Optional<Double> getFormattedPrice(Elements elements) {
+        return PriceFormatter.getPriceFromString(elements.get(0).text());
+    }
+
+    private Elements getPriceFromProductLinkElement(Element element) {
+        return element.select("div[class=price-new]");
     }
 
     private Optional<String> getManufacturerFromTitle(String title) {

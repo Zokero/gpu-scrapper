@@ -1,6 +1,6 @@
 package com.cpuscrp.scrapp.model;
 
-import lombok.RequiredArgsConstructor;
+import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -10,8 +10,7 @@ import java.util.Locale;
 import java.util.Optional;
 
 @Slf4j
-@Component
-@RequiredArgsConstructor
+@UtilityClass
 public class PriceFormatter {
 
     public Optional<Double> getPriceFromString(String string) {

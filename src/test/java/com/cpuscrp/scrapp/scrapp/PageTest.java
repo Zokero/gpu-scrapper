@@ -1,7 +1,7 @@
-package com.cpuscrp.scrapp.scrappers;
+package com.cpuscrp.scrapp.scrapp;
 
 import com.cpuscrp.scrapp.model.GpuFactory;
-import com.cpuscrp.scrapp.model.PriceFormatter;
+import com.cpuscrp.scrapp.scrapp.page.MorelePage;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -32,13 +32,11 @@ class PageTest {
     @Autowired
     GpuFactory factory;
 
-    @Autowired
-    PriceFormatter priceFormatter;
-    Page page;
+    MorelePage page;
 
     @BeforeEach
     void beforeEach() {
-        page = new Page(document, factory, priceFormatter);
+        page = new MorelePage(factory, document);
     }
 
     @Test
