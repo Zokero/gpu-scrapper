@@ -15,14 +15,17 @@ public class GpuRepositoryImpl implements CustomGpuRepository {
     @Override
     public void updateIfDocumentExists(Gpu gpu) {
         MongoCollection<Document> col = mongoTemplate.getDb().getCollection("gpus");
-        Document query = new Document("model", gpu.getModel()).append("manufacturer", gpu.getManufacturer());
+        Document query = new Document("chipsetType", gpu.getChipsetType())
+                .append("manufacturer", gpu.getManufacturer())
+                .append("model", gpu.getModel());
         System.out.println(gpu);
         Document doc = new Document()
-                .append("model", gpu.getModel())
+                .append("chipsetType", gpu.getChipsetType())
                 .append("price", gpu.getPrice())
                 .append("chipset", gpu.getChipset().label)
                 .append("manufacturer", gpu.getManufacturer())
-                .append("link", gpu.getLink());
+                .append("link", gpu.getLink())
+                .append("model", gpu.getModel());
         col.replaceOne(query, doc, new ReplaceOptions().upsert(true));
     }
 }

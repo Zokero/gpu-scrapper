@@ -36,15 +36,25 @@ public class MorelePage implements Page {
         if (!featuresElement.isEmpty()) {
             String title = productLinkElement.attr("title");
             Optional<String> manufacturerName = getManufacturerFromTitle(title);
+            Optional<String> model = getModelFromTitle(title);
             Optional<Double> price = getFormattedPrice(priceElement);
-            if (manufacturerName.isPresent() && price.isPresent()) {
+            if (manufacturerName.isPresent() && price.isPresent() && model.isPresent()) {
                 String fullGpuName = getFullGpuName(featuresElement);
-                String model = getModelFromFullGpuName(fullGpuName);
+                String chipsetType = getChipsetTypeFromFullGpuName(fullGpuName);
                 String chipsetName = getChipsetName(fullGpuName);
                 String gpuLink = productLinkElement.attr("href");
-                return gpuFactory.createGpu(chipsetName, model, price.get(), manufacturerName.get(), gpuLink);
+                return gpuFactory.createGpu(chipsetName, chipsetType, price.get(), manufacturerName.get(), gpuLink, model.get());
             }
         }
+        return Optional.empty();
+    }
+
+    private Optional<String> getModelFromTitle(String title) {
+            Pattern pattern = Pattern.compile("\\((.*?)\\)");
+            Matcher matcher = pattern.matcher(title);
+            if (matcher.find()) {
+                return Optional.of(matcher.group(1).trim());
+            }
         return Optional.empty();
     }
 
@@ -92,7 +102,7 @@ public class MorelePage implements Page {
         return features.get(2).attr("title");
     }
 
-    private String getModelFromFullGpuName(String fullGpuName) {
+    private String getChipsetTypeFromFullGpuName(String fullGpuName) {
         return fullGpuName.substring(fullGpuName.indexOf(" ")).trim();
     }
 

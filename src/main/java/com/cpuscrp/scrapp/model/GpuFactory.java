@@ -9,13 +9,14 @@ import java.util.Optional;
 @Service
 public class GpuFactory {
 
-    public Optional<Gpu> createGpu(String chipsetName, String model, double price, String manufacturerName, String productLink) {
+    public Optional<Gpu> createGpu(String chipsetName, String chipsetType, double price, String manufacturerName, String productLink, String model) {
         Gpu gpu = new Gpu();
         gpu.setChipset(chipsetName);
-        gpu.setModel(model);
+        gpu.setChipsetType(chipsetType);
         gpu.setPrice(price);
         gpu.setManufacturer(manufacturerName);
         gpu.setLink(productLink);
+        gpu.setModel(model);
         return Optional.of(gpu);
     }
 

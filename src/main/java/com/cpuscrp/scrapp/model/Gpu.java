@@ -15,11 +15,12 @@ public class Gpu {
 
     @Id
     private ObjectId id;
-    private String model;
+    private String chipsetType;
     private double price;
     private Chipset chipset;
     private String manufacturer;
     private String link;
+    private String model;
 
     public void setChipset(String chipsetName) {
         this.chipset = Chipset.fromString(chipsetName);
@@ -28,10 +29,11 @@ public class Gpu {
     @Override
     public String toString() {
         return "Gpu{" +
-                "model='" + model + '\'' +
-                ", price='" + price + '\'' +
+                "chipsetType=" + chipsetType +
+                ", price=" + price +
                 ", chipset=" + chipset +
                 ", manufacturer=" + manufacturer +
-                '}';
+                ", model=" + model +
+                "}";
     }
 }
