@@ -18,11 +18,10 @@ public class GpuRepositoryImpl implements CustomGpuRepository {
         Document query = new Document("chipsetType", gpu.getChipsetType())
                 .append("manufacturer", gpu.getManufacturer())
                 .append("model", gpu.getModel());
-        System.out.println(gpu);
         Document doc = new Document()
                 .append("chipsetType", gpu.getChipsetType())
                 .append("price", gpu.getPrice())
-                .append("chipset", gpu.getChipset().label)
+                .append("chipset", gpu.getChipset())
                 .append("manufacturer", gpu.getManufacturer())
                 .append("link", gpu.getLink())
                 .append("model", gpu.getModel());
