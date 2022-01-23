@@ -6,7 +6,6 @@ plugins {
 
 group = 'com.cpuscrp'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
 
 configurations {
 	compileOnly {
@@ -22,6 +21,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation group: 'org.jsoup', name: 'jsoup', version: '1.7.2'
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb:2.6.2'
+	implementation("org.springframework.boot:spring-boot-starter-web:2.6.2")
 	implementation 'org.apache.commons:commons-lang3:3.12.0'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'

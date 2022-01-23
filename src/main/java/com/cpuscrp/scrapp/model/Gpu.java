@@ -17,14 +17,10 @@ public class Gpu {
     private ObjectId id;
     private String chipsetType;
     private double price;
-    private Chipset chipset;
+    private String chipset;
     private String manufacturer;
     private String link;
     private String model;
-
-    public void setChipset(String chipsetName) {
-        this.chipset = Chipset.fromString(chipsetName);
-    }
 
     @Override
     public String toString() {

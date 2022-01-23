@@ -18,7 +18,7 @@ class Scheduler {
     @Autowired
     private GpuRepository mongoRepository;
 
-    @Scheduled(fixedRate = 2000)
+    @Scheduled(fixedRate = 10000)
     public void scrappServices() {
         List<Gpu> gpuList = moreleScrapper.getGpuList();
         for (Gpu gpu : gpuList) {
