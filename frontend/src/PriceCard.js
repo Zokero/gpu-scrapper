@@ -1,12 +1,5 @@
 import React from 'react';
 import { Row, Col, Image } from 'react-bootstrap';
-// import './index.css'
-
-const container = {
-    height: "130px",
-    maxWidth: "800px",
-    minWidth: "400px"
-}
 
 const stores = [
     {
@@ -26,26 +19,36 @@ const stores = [
 ];
 
 export const PriceCard = () => {
-    return ( 
-        stores.map((store, index) => { 
-        return <Col className="bg-danger m-1" key={store.id}>     
+    return (   
+        <>
+           <Col className="store-col col-4  bg-danger m-1 img-fluid" >     
+                    {/* <Image className="" src={stores[0].img}/> */}
+                    <p className="">5555,55PLN</p>
+            </Col>
+        <Col className="store-col col-4 bg-danger m-1" >     
                     {/* <Image className="" src={store.img}/> */}
                     {/* <p className="">5555,55PLN</p> */}
                     TEST
             </Col>
-        })
-        
-    );
+        <Col className="store-col col-4 bg-danger m-1" >     
+                    {/* <Image className="" src={store.img}/> */}
+                    {/* <p className="">5555,55PLN</p> */}
+                    TEST
+            </Col>    
+        </>   
+         
+       )
 }
 
 // export const PriceCard = () => {
-//     return ( <Row  className="d-flex justify-content-center flex-nowrap border border-warning">
-//         {stores.map((store, index) => { 
-//         return <Col className="border border-secondary col-4" style={{margin: "2px"}} align='center'>     
-//                     <Image className="img-fluid store-image align-self-start" src={store.img}/>
-//                     <p className="">5555,55PLN</p>
+//     return ( 
+//         stores.map((store, index) => { 
+//         return <Col className="bg-danger m-1" key={store.id}>     
+//                     {/* <Image className="" src={store.img}/> */}
+//                     {/* <p className="">5555,55PLN</p> */}
+//                     TEST
 //             </Col>
-//         })}
-//         </Row>
+//         })
+        
 //     );
 // }

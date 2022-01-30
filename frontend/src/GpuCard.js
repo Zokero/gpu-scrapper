@@ -1,34 +1,28 @@
 import React from 'react';
-import { Card, Col, Image, Row, Container } from 'react-bootstrap';
-// import './index.css'
+import { Col, Image, Row } from 'react-bootstrap';
 import { PriceCard } from './PriceCard';
 
-const mainRow = {
-    height: "130px",
-    maxWidth: "850px",
-    // minWidth: "400px",
-    border: "3px solid green",
-    margin: "5px",
-    padding: "5px"
-}
+
 
 export const GpuCard = ({chipsetType, manufacturer, index}) => {
-  return <Row className="bg-dark" style={mainRow}>
-                <Col className="col-md-3 p-2 bg-secondary" >
-                    {/* <Image className="" src="https://images.morele.net/i256/9289668_0_i256.jpg"/> */}
-                    TEST
+  return (
+        <Row className="p-3 bg-success main-row d-flex flex-nowrap" >
+                <Col className=" image-col bg-secondary col-auto" >
+                    <Image className="gpu-img" src="https://images.morele.net/i256/9289668_0_i256.jpg"/>
+                    {/* TEST */}
                 </Col>
-                <Col className="col-md-9 ">
-                    <Row  className=" bg-primary">
-                        {/* <h4>{chipsetType + " " + manufacturer}</h4> */}
+                <Col className=" h-100 col-auto prices-col bg-primary">
+                    <Row className="bg-light p-1 m-1">
+                        <Col>{/* <h4>{chipsetType + " " + manufacturer}</h4> */}
                         TEST
+                        </Col>
                     </Row>
-                    <Row className=" bg-info">
+                    <Row className="bg-info m-1 d-flex flex-nowrap">
                        <PriceCard /> 
                     </Row>
                 </Col>
-        </Row>
-};
+        </Row>   
+)};
 
 
 // export const GpuCard = ({chipsetType, manufacturer, index}) => {
