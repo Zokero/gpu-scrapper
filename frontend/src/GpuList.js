@@ -1,28 +1,28 @@
 import React from 'react';
 import  {GpuCard}  from './GpuCard';
-import {Container} from 'react-bootstrap';
+import {Container, Navbar, Row} from 'react-bootstrap';
 import { data } from './gpus';
-import "./index"
-
-
 
 export const GpuList = () => {
-  return <Container className="border">
-          {data.map((gpu, index) => {
-            return<GpuCard key={gpu.id} {...gpu}/>
-              
+  return (<>
+  <Container className='mb-2'>
+    <Navbar>
+          <div class="container-fluid">
+            <a class="navbar-brand">Gpus</a>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </Navbar>
+  </Container>
+    
+  <Container className="border">
+          <Row className='d-flex justify-content-xxl-between justify-content-center'>
+          {data.map((gpu) => {
+            return<GpuCard key={gpu.id} {...gpu}/>   
           })}
-    </Container>    
-};
-
-// export const GpuList = () => {
-//   return <Container>
-
-//   {data.map((gpu, index) => {
-//       return <Container className="" style={container} >
-//                 <GpuCard key={gpu.id} {...gpu}/>
-//             </Container>
-//       })} 
-//       </Container>   
-// };
-
+          </Row>
+    </Container> 
+    </>   
+  )};
