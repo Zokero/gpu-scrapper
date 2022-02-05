@@ -1,13 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {GpuList} from "./GpuList";
 
-	constructor(props) {
-		super(props);
-		this.state = {employees: []};
-	}
+function App() {
+    return  <GpuList />
+        
+           
+           
 
-	componentDidMount() { (2)
-		client({method: 'GET', path: '/api/gpus'}).done(response => {
-			this.setState({employees: response.entity._embedded.employees});
-		});
-	}
+        
+ 
+}
+
+export default App
