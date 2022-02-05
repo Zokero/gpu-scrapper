@@ -13,12 +13,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/")
-@CrossOrigin(origins = "http://localhost:8080")
 public class GpuController {
     @Autowired
     GpuRepository gpuRepository;
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin
     @GetMapping("gpus")
     public List<Gpu> getAllGpus() {
         return gpuRepository.findAll();
