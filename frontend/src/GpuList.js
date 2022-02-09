@@ -1,7 +1,6 @@
 import React from 'react';
 import  {GpuCard}  from './GpuCard';
 import {Container, Navbar, Row} from 'react-bootstrap';
-// import { data } from './gpus';
 import { useState, useEffect } from 'react';
 
 export const GpuList = () => {
@@ -34,8 +33,8 @@ export const GpuList = () => {
   <Container className="border">
           <Row className='d-flex justify-content-xxl-between justify-content-center'>
           {gpus && (
-          gpus.map((gpu, index) => (
-            <GpuCard key={gpu.model} {...gpu}/>   
+          gpus.map((gpu, _id, index) => (
+            <GpuCard key={_id} {...gpu}/>   
           )))}
           </Row>
     </Container> 

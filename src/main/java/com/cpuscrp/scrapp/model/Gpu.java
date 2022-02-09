@@ -21,6 +21,7 @@ public class Gpu {
     private String manufacturer;
     private String link;
     private String model;
+//    private Date Date lastCheckDate;
 
     @Override
     public String toString() {

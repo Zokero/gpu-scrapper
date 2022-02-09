@@ -85,7 +85,7 @@ public class MorelePage implements Page {
     private Optional<String> getManufacturerFromTitle(String title) {
         boolean isTitleValid = title.contains("Karta graficzna");
         if (isTitleValid) {
-            Pattern pattern = Pattern.compile("(?<=graficzna)\\s+(.*?)\\s+(?=(GeForce|Radeon))");
+            Pattern pattern = Pattern.compile("(?<=graficzna)\\s+(.*?)\\s+(?i)(?=(GeForce|Radeon))");
             Matcher matcher = pattern.matcher(title);
             if (matcher.find()) {
                 return Optional.of(matcher.group(1).trim());
